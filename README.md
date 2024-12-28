@@ -1,73 +1,86 @@
-Automated Text Translation and Entry Tool
-This Python script automates the process of capturing text from a specific screen region, translating it into French, and typing the translated text into input fields. It leverages Tesseract OCR for text recognition, Google Translate for translation, and PyAutoGUI for automation. The script is designed for repetitive tasks requiring multilingual data entry.
+# Screen Translation Automation
 
-Features
-OCR Integration: Uses Tesseract OCR to extract text from a screenshot of a specific screen region.
-Text Translation: Automatically translates extracted text into French using Google Translate.
-Automated Typing: Inputs translated text into active fields, preserving accents and special characters using the clipboard.
-Unwanted Character Removal: Cleans the translated text using a regex pattern to remove unwanted characters.
-Task Automation: Simulates Alt+Tab for window switching and Tab for navigation between input fields.
-How It Works
-Setup:
+This repository contains a Python script that automates the process of capturing on-screen text, translating it into French, and typing the translated text with proper accents. The script integrates optical character recognition (OCR), Google Translate API, and automation tools like PyAutoGUI.
 
-Configure Tesseract OCR with the correct path to its executable.
-Initialize the Translator object for reuse throughout the script.
-Capture and OCR:
+---
 
-Captures a predefined region of the screen using PyAutoGUI.
-Extracts text from the screenshot using Tesseract OCR with optimized configuration.
-Translation:
+## Features
 
-Translates the extracted text to French using the Google Translate API.
-Text Cleanup:
+### 🌐 Translation and OCR
+- **Text Capture:** Extract text from a defined screen region using **Tesseract OCR**.
+- **French Translation:** Translate captured text into French using the **Google Translate API**.
+- **Text Cleaning:** Automatically remove unwanted characters using regex patterns.
 
-Applies a regex pattern to clean unwanted characters from the translated text for cleaner input.
-Automated Text Entry:
+### 💻 Automation
+- **Keyboard Shortcuts:** Automate application switching with **Alt+Tab**.
+- **Clipboard Integration:** Paste translated text using **Pyperclip**.
+- **Tab Navigation:** Simulate keypresses to navigate between input fields.
 
-Uses PyAutoGUI and Pyperclip to paste the translated text with special characters into input fields.
-Simulates keyboard shortcuts for navigation between fields.
-Error Handling:
+### 🔧 Customization
+- Adjustable screen capture region.
+- Configurable Tesseract OCR options for improved speed and accuracy.
 
-Catches exceptions during the process and skips to the next input field to ensure continuity.
-Repetition:
+---
 
-Loops the process for a specified number of iterations (35 by default).
-Requirements
-Python 3.x
-Tesseract OCR installed and configured
-Required Python libraries:
-googletrans
-pytesseract
-pyautogui
-pillow
-pyperclip
-re
-How to Use
-Install the required libraries:
+## Setup Instructions
 
-bash
-Copy code
-pip install googletrans==4.0.0-rc1 pytesseract pyautogui pillow pyperclip
-Set up Tesseract OCR:
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/username/screen-translation-automation.git
+cd screen-translation-automation
+```
 
-Download and install Tesseract from Tesseract OCR.
-Update the tesseract_cmd path in the script.
-Configure the screen region:
+### 2️⃣ Install Dependencies
+Install required libraries using `pip`:
+```bash
+pip install googletrans==4.0.0-rc1 pyautogui pytesseract pillow pyperclip
+```
 
-Adjust the region variable in capture_and_read_text() to match your screen layout.
-Run the script:
+### 3️⃣ Configure Tesseract Path
+Ensure Tesseract is installed and update the script with the correct path:
+```python
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+```
 
-bash
-Copy code
-python text_translation_tool.py
-Follow the on-screen instructions to automate translation and text entry.
+---
 
-Notes
-Ensure Tesseract OCR and the screen region are properly configured for accurate text recognition.
-Modify the regex pattern to include additional unwanted characters if needed.
-Test the script in a safe environment before using it for critical tasks.
-Future Enhancements
-Add support for other languages.
-Improve error handling for network issues during translation.
-Allow dynamic adjustment of the screen region.
-This tool is ideal for automating repetitive multilingual data entry tasks with minimal user intervention.
+## How to Use
+
+1. **Define the Screen Region:**
+   Update the `region` parameter in `capture_and_read_text()` to match your desired capture area:
+   ```python
+   region = (100, 100, 1250, 400)
+   ```
+
+2. **Run the Script:**
+   Launch the script to start automating the process:
+   ```bash
+   python screen_translation.py
+   ```
+
+3. **Switch Applications:**
+   Ensure the target application is active after the **Alt+Tab** automation.
+
+4. **Translation Output:**
+   The script:
+   - Captures text from the screen.
+   - Translates it into French.
+   - Types the translated text into the active application.
+
+---
+
+## Example Workflow
+
+- **Text Capture:** A screenshot is taken of a predefined region on the screen.
+- **OCR Extraction:** The captured image is processed using Tesseract to extract text.
+- **French Translation:** The text is translated into French using Google Translate.
+- **Text Entry:** The translated text is pasted into the active field using keyboard automation.
+
+---
+
+## Future Enhancements
+- **Language Selection:** Add support for multiple target languages.
+- **GUI Interface:** Provide an interface for defining regions and customizing settings.
+- **Error Logging:** Implement detailed error handling and logging for debugging.
+
+---
